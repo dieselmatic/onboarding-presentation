@@ -1,37 +1,25 @@
 import { useState, useEffect, useCallback } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-
-const slideVariants = {
-  enter: (direction) => ({
-    x: direction > 0 ? '100%' : '-100%',
-    opacity: 0,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-  },
-  exit: (direction) => ({
-    x: direction > 0 ? '-100%' : '100%',
-    opacity: 0,
-  }),
-};
-
-const slideTransition = {
-  x: { type: 'tween', duration: 0.5, ease: [0.4, 0, 0.2, 1] },
-  opacity: { duration: 0.3 },
-};
 
 export default function Presentation({ slides, darkSlides = [] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [displaySlide, setDisplaySlide] = useState(0);
   const totalSlides = slides.length;
 
   const goToSlide = useCallback((index) => {
-    if (index < 0 || index >= totalSlides || index === currentSlide) return;
-    setDirection(index > currentSlide ? 1 : -1);
-    setCurrentSlide(index);
-  }, [currentSlide, totalSlides]);
+    if (index < 0 || index >= totalSlides || index === currentSlide || isTransitioning) return;
+    setIsTransitioning(true);
+    // Start fade out
+    setTimeout(() => {
+      setDisplaySlide(index);
+      setCurrentSlide(index);
+      // Start fade in
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 300);
+  }, [currentSlide, totalSlides, isTransitioning]);
 
   const goNext = useCallback(() => goToSlide(currentSlide + 1), [currentSlide, goToSlide]);
   const goPrev = useCallback(() => goToSlide(currentSlide - 1), [currentSlide, goToSlide]);
@@ -51,24 +39,18 @@ export default function Presentation({ slides, darkSlides = [] }) {
   }, [goNext, goPrev]);
 
   const isDark = darkSlides.includes(currentSlide);
-  const SlideComponent = slides[currentSlide];
+  const SlideComponent = slides[displaySlide];
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
-      <AnimatePresence initial={false} custom={direction} mode="wait">
-        <motion.div
-          key={currentSlide}
-          custom={direction}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={slideTransition}
-          className="absolute inset-0"
-        >
-          <SlideComponent isActive={true} />
-        </motion.div>
-      </AnimatePresence>
+      {/* Slide content */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-300 ease-in-out ${
+          isTransitioning ? 'opacity-0' : 'opacity-100'
+        }`}
+      >
+        <SlideComponent key={displaySlide} isActive={!isTransitioning} />
+      </div>
 
       {/* Slide counter — bottom left */}
       <div className={`fixed bottom-6 left-6 text-sm font-body z-50 ${isDark ? 'text-white/40' : 'text-brand-black/40'}`}>
