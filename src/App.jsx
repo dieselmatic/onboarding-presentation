@@ -1,4 +1,8 @@
 import Presentation from './components/Presentation';
+import SlideWelcome from './components/SlideWelcome';
+import SlideWhyDieselmatic from './components/SlideWhyDieselmatic';
+import SlideYourMarket from './components/SlideYourMarket';
+import SlideYourPlan from './components/SlideYourPlan';
 
 const PlaceholderSlide = ({ title, dark }) => () => (
   <div className={`h-screen w-screen flex items-center justify-center ${dark ? 'bg-brand-black text-brand-white' : 'bg-brand-white text-brand-black'}`}>
@@ -7,10 +11,10 @@ const PlaceholderSlide = ({ title, dark }) => () => (
 );
 
 const slides = [
-  PlaceholderSlide({ title: 'Slide 1: Welcome', dark: true }),
-  PlaceholderSlide({ title: 'Slide 2: Why Dieselmatic', dark: true }),
-  PlaceholderSlide({ title: 'Slide 3: Your Market', dark: false }),
-  PlaceholderSlide({ title: 'Slide 4: Your Plan', dark: false }),
+  SlideWelcome,
+  SlideWhyDieselmatic,
+  SlideYourMarket,
+  SlideYourPlan,
   PlaceholderSlide({ title: 'Slide 5: ROI Calculator', dark: false }),
   PlaceholderSlide({ title: 'Slide 6: SEO Growth', dark: true }),
   PlaceholderSlide({ title: 'Slide 7: First 90 Days', dark: false }),
