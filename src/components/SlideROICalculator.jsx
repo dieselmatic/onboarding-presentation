@@ -34,7 +34,7 @@ function RangeSlider({ min, max, step, value, onChange }) {
 function OutputNumber({ value, format, label, size = 'normal', hero = false }) {
   const display = useAnimatedNumber(value, { format });
   const isNegative = value < 0;
-  const sizeClasses = { normal: 'text-2xl lg:text-3xl', large: 'text-3xl lg:text-4xl', hero: 'text-4xl lg:text-5xl' };
+  const sizeClasses = { normal: 'text-xl sm:text-2xl lg:text-3xl', large: 'text-3xl lg:text-4xl', hero: 'text-3xl sm:text-4xl lg:text-5xl' };
   return (
     <div className={hero ? 'text-center' : ''}>
       <div className={`font-body font-bold tabular-nums ${sizeClasses[size]} ${hero ? (isNegative ? 'text-brand-red' : 'text-brand-green') : 'text-brand-black'}`}>
@@ -72,12 +72,12 @@ export default function SlideROICalculator({ isActive }) {
   }, [values]);
 
   return (
-    <div className="h-screen w-screen bg-brand-white flex flex-col relative overflow-y-auto">
+    <div className="min-h-screen w-screen bg-brand-white flex flex-col relative overflow-y-auto">
       <img src={darkLogo} alt="Dieselmatic" className="absolute top-6 left-6 w-[120px] z-10" />
       <div className="flex-1 flex items-center justify-center px-6 py-20">
         <div className="max-w-7xl w-full">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={isActive ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }} className="text-center mb-8">
-            <h2 className="text-3xl lg:text-4xl font-headline font-extrabold italic text-brand-black mb-2">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-headline font-extrabold italic text-brand-black mb-2">
               Google Ads <span className="text-brand-orange">ROI Calculator</span>
             </h2>
             <p className="text-sm text-brand-black/50 font-body">Adjust the sliders to see your projected returns</p>

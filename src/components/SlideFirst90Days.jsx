@@ -34,12 +34,12 @@ const fadeUp = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transi
 export default function SlideFirst90Days({ isActive }) {
   const milestones = buildMilestones(PARTNER_DATA.onboardingCallDate);
   return (
-    <div className="h-screen w-screen bg-brand-white flex items-center justify-center relative overflow-y-auto">
+    <div className="min-h-screen w-screen bg-brand-white flex items-center justify-center relative overflow-y-auto">
       <img src={darkLogo} alt="Dieselmatic" className="absolute top-6 left-6 w-[120px] z-10" />
       <motion.div initial="hidden" animate={isActive ? 'show' : 'hidden'}
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } } }}
         className="max-w-3xl w-full px-8 py-20">
-        <motion.h2 variants={fadeUp} className="text-3xl lg:text-4xl font-headline font-extrabold italic text-brand-black mb-2 text-center">
+        <motion.h2 variants={fadeUp} className="text-2xl sm:text-3xl lg:text-4xl font-headline font-extrabold italic text-brand-black mb-2 text-center">
           Your First <span className="text-brand-orange">90 Days</span> with Dieselmatic
         </motion.h2>
         <motion.p variants={fadeUp} className="text-brand-black/50 font-body text-center mb-10">Here's exactly what's happening and when.</motion.p>

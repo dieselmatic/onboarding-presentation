@@ -10,10 +10,10 @@ const fadeUp = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transi
 export default function SlideYourPlan({ isActive }) {
   const { planTier, planIncludes, city } = PARTNER_DATA;
   return (
-    <div className="h-screen w-screen bg-brand-white flex items-center justify-center relative">
+    <div className="min-h-screen w-screen bg-brand-white flex items-center justify-center relative overflow-y-auto py-20 lg:py-0">
       <img src={darkLogo} alt="Dieselmatic" className="absolute top-6 left-6 w-[120px] z-10" />
       <motion.div variants={container} initial="hidden" animate={isActive ? 'show' : 'hidden'} className="max-w-5xl w-full px-8 text-center">
-        <motion.h2 variants={fadeUp} className="text-4xl lg:text-5xl font-headline font-extrabold italic text-brand-black mb-3">
+        <motion.h2 variants={fadeUp} className="text-2xl sm:text-3xl lg:text-5xl font-headline font-extrabold italic text-brand-black mb-3">
           Your <span className="text-brand-orange">{planTier}</span> Plan
         </motion.h2>
         <motion.p variants={fadeUp} className="text-lg text-brand-black/60 font-body mb-12">

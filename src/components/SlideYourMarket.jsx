@@ -16,7 +16,7 @@ const INFO_CARDS = [
 function RadiusVisualization() {
   const rings = [1, 0.7, 0.4];
   return (
-    <div className="bg-brand-black rounded-2xl p-8 h-full flex items-center justify-center min-h-[400px]">
+    <div className="bg-brand-black rounded-2xl p-8 h-full flex items-center justify-center min-h-[250px] lg:min-h-[400px]">
       <div className="relative w-64 h-64">
         {rings.map((scale, i) => (
           <motion.div key={i} initial={{ scale: 0, opacity: 0 }} animate={{ scale, opacity: 0.15 + i * 0.1 }}
@@ -40,12 +40,12 @@ function RadiusVisualization() {
 
 export default function SlideYourMarket({ isActive }) {
   return (
-    <div className="h-screen w-screen bg-brand-white flex items-center justify-center relative">
+    <div className="min-h-screen w-screen bg-brand-white flex items-center justify-center relative overflow-y-auto py-16 lg:py-0">
       <img src={darkLogo} alt="Dieselmatic" className="absolute top-6 left-6 w-[120px] z-10" />
       <motion.div variants={container} initial="hidden" animate={isActive ? 'show' : 'hidden'}
         className="max-w-6xl w-full px-8 grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
         <div className="lg:col-span-3">
-          <motion.h2 variants={fadeUp} className="text-4xl font-headline font-extrabold italic text-brand-black mb-10">
+          <motion.h2 variants={fadeUp} className="text-2xl sm:text-3xl lg:text-4xl font-headline font-extrabold italic text-brand-black mb-6 lg:mb-10">
             Your Market at a Glance
           </motion.h2>
           <div className="space-y-4 mb-8">

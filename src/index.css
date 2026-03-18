@@ -12,7 +12,7 @@
   }
 
   body {
-    @apply bg-brand-black text-brand-white m-0 p-0 overflow-hidden;
+    @apply bg-brand-black text-brand-white m-0 p-0;
   }
 }
 

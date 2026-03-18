@@ -20,8 +20,8 @@ const TESTIMONIALS = [
 function AnimatedStat({ value, suffix, label, animate }) {
   const display = useAnimatedNumber(animate ? value : 0, { format: 'integer', suffix });
   return (
-    <div className="text-center px-8">
-      <div className="text-6xl lg:text-7xl font-bold font-body text-brand-orange tabular-nums mb-3">{display}</div>
+    <div className="text-center px-4 sm:px-8">
+      <div className="text-4xl sm:text-5xl lg:text-7xl font-bold font-body text-brand-orange tabular-nums mb-3">{display}</div>
       <div className="text-sm lg:text-base text-brand-white/70 font-body max-w-[200px] mx-auto">{label}</div>
     </div>
   );
@@ -29,21 +29,21 @@ function AnimatedStat({ value, suffix, label, animate }) {
 
 export default function SlideWhyDieselmatic({ isActive }) {
   return (
-    <div className="h-screen w-screen bg-brand-black flex items-center justify-center relative">
+    <div className="min-h-screen w-screen bg-brand-black flex items-center justify-center relative overflow-y-auto py-16 lg:py-0">
       <img src={whiteLogo} alt="Dieselmatic" className="absolute top-6 left-6 w-[120px] z-10" />
       <motion.div variants={container} initial="hidden" animate={isActive ? 'show' : 'hidden'} className="text-center z-10 px-8 max-w-6xl">
-        <motion.h2 variants={fadeUp} className="text-4xl lg:text-5xl font-headline font-extrabold italic text-brand-white mb-16">
+        <motion.h2 variants={fadeUp} className="text-2xl sm:text-3xl lg:text-5xl font-headline font-extrabold italic text-brand-white mb-8 lg:mb-16">
           We Only Do One Thing.{' '}<span className="text-brand-orange">And We're the Best at It.</span>
         </motion.h2>
-        <motion.div variants={fadeUp} className="flex justify-center gap-12 lg:gap-20 mb-14">
+        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row justify-center gap-8 sm:gap-12 lg:gap-20 mb-8 lg:mb-14">
           {STATS.map((stat) => (<AnimatedStat key={stat.label} {...stat} animate={isActive} />))}
         </motion.div>
-        <motion.p variants={fadeUp} className="text-lg text-brand-white/60 font-body max-w-3xl mx-auto mb-14">
+        <motion.p variants={fadeUp} className="text-lg text-brand-white/60 font-body max-w-3xl mx-auto mb-6 lg:mb-14">
           We don't do restaurants, lawyers, or plumbers. Every strategy, every ad, every website we build is engineered specifically for diesel repair shops. That focus is your unfair advantage.
         </motion.p>
-        <motion.div variants={fadeUp} className="flex gap-6 justify-center">
+        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
           {TESTIMONIALS.map((t) => (
-            <div key={t.name} className="bg-brand-black-alt rounded-xl p-6 max-w-xs">
+            <div key={t.name} className="bg-brand-black-alt rounded-xl p-6 w-full sm:max-w-xs">
               <p className="text-brand-white/80 italic font-body text-sm mb-3">"{t.quote}"</p>
               <p className="text-brand-white/50 text-xs font-body">— {t.name}, {t.company}</p>
             </div>

@@ -44,17 +44,17 @@ export default function SlideSEOGrowth({ isActive }) {
   useEffect(() => { if (isActive) setAnimationKey((k) => k + 1); }, [isActive]);
 
   return (
-    <div className="h-screen w-screen bg-brand-black flex flex-col items-center justify-center relative px-6 py-16">
+    <div className="min-h-screen w-screen bg-brand-black flex flex-col items-center justify-center relative overflow-y-auto px-6 py-16">
       <img src={whiteLogo} alt="Dieselmatic" className="absolute top-6 left-6 w-[120px] z-10" />
       <motion.div initial="hidden" animate={isActive ? 'show' : 'hidden'}
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }} className="max-w-6xl w-full">
-        <motion.h2 variants={fadeUp} className="text-3xl lg:text-4xl font-headline font-extrabold italic text-brand-white text-center mb-2">
+        <motion.h2 variants={fadeUp} className="text-2xl sm:text-3xl lg:text-4xl font-headline font-extrabold italic text-brand-white text-center mb-2">
           How Organic SEO <span className="text-brand-orange">Builds Over Time</span>
         </motion.h2>
         <motion.p variants={fadeUp} className="text-brand-white/50 font-body text-center mb-8">
           Paid ads are your engine. SEO is your fuel efficiency.
         </motion.p>
-        <motion.div variants={fadeUp} className="h-[320px] w-full mb-8">
+        <motion.div variants={fadeUp} className="h-[220px] sm:h-[280px] lg:h-[320px] w-full mb-8">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart key={animationKey} data={SEO_DATA} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
               <defs>
@@ -78,9 +78,9 @@ export default function SlideSEOGrowth({ isActive }) {
             </AreaChart>
           </ResponsiveContainer>
         </motion.div>
-        <motion.div variants={fadeUp} className="flex justify-between max-w-4xl mx-auto mb-8 px-4">
+        <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4 lg:justify-between max-w-4xl mx-auto mb-8 px-4">
           {ANNOTATIONS.map((ann) => (
-            <div key={ann.month} className="text-center max-w-[150px]">
+            <div key={ann.month} className="text-center max-w-[150px] min-w-[100px]">
               <div className="text-xs text-brand-orange font-body font-semibold">{ann.month}</div>
               <div className="text-xs text-brand-white/50 font-body">{ann.label}</div>
             </div>

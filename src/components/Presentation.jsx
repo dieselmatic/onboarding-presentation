@@ -45,7 +45,7 @@ export default function Presentation({ slides, darkSlides = [] }) {
     <div className="relative h-screen w-screen overflow-hidden">
       {/* Slide content */}
       <div
-        className={`absolute inset-0 transition-opacity duration-300 ease-in-out ${
+        className={`absolute inset-0 overflow-y-auto transition-opacity duration-300 ease-in-out ${
           isTransitioning ? 'opacity-0' : 'opacity-100'
         }`}
       >
